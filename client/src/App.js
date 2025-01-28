@@ -21,8 +21,8 @@ import AdminProtectedRoute from "./components/protectRoutes/AdminProtectedRoute"
 import AdminLayout from "./components/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminUsers from "./pages/admin/AdminUsers";
-import Unauthorized from "./pages/admin/Unauthorized";
-import AdminSettings from "./pages/admin/AdminSettings";
+// import Unauthorized from "./pages/admin/Unauthorized";
+// import AdminSettings from "./pages/admin/AdminSettings";
 import ChallengeDetails from "./pages/ChallengeDetails";
 import Notifications from "./pages/Notifications";
 import BadgePage from "./pages/BadgePage";
@@ -49,7 +49,7 @@ const App = () => {
         <Route path="/challenges/:challengeId" element={<ChallengeDetails />} />
         {/* user */}
         <Route path="/leaderboard" element={<Leaderboard />} />
-        <Route path="/unauthorized" element={<Unauthorized />} />
+        {/* <Route path="/unauthorized" element={<Unauthorized />} /> */}
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/badge" element={<BadgePage />} />
         <Route path="/activity" element={<ActivityLogPage />} />
@@ -76,7 +76,7 @@ const App = () => {
           <Route index element={<AdminDashboard />} />
           <Route path="challenges" element={<AdminChallenges />} />
           <Route path="users" element={<AdminUsers />} />
-          <Route path="settings" element={<AdminSettings />} />
+          {/* <Route path="settings" element={<AdminSettings />} /> */}
         </Route>
       </Routes>
       {/* <Footer /> */}

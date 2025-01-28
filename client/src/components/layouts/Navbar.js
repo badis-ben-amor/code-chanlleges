@@ -1,68 +1,55 @@
-import React, { useEffect } from "react";
-import { Button, Container, Nav, Navbar, Spinner } from "react-bootstrap";
+import React from "react";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUserProfile, logout } from "../../redux/slices/userSlice";
+import { logout } from "../../redux/slices/userSlice";
 import { useNavigate } from "react-router-dom";
 import { loginThunk, logoutThunk } from "../../redux/slices/authSlice";
-import Swal from "sweetalert2";
+import { PersonCircle, Trophy, List } from "react-bootstrap-icons";
 
 function Navbare() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { isRejected, user, isAuthenticated, isLoading, isSuccess, error } =
-    useSelector((state) => state.user);
+  const { isRejected, user, isAuthenticated, isLoading } = useSelector(
+    (state) => state.user
+  );
 
   const { isLoading: isLoadingAuth, isSuccess: isSuccessAuth } = useSelector(
     (state) => state.auth
   );
 
-  // const handleClick = () => {
-  //   Swal.fire({
-  //     title: "You must reload the page",
-  //     text: "",
-  //     icon: "info",
-  //     confirmButtonText: "OK",
-  //     customClass: {
-  //       title: "custom-title",
-  //       text: "custom-text",
-  //     },
-  //   });
-  // };
-
   const hangAdminButton = () => {
     dispatch(loginThunk({ email: "fff@gmail.com", password: "fff" }));
-    // handleClick();
     navigate("/admin");
   };
+
   const handleLogout = () => {
-    dispatch(logoutThunk())
-      .then(() => {
-        dispatch(logout());
-        window.location.href = "/login";
-      })
-      .catch((error) => {
-        Swal.fire({
-          title: "Logout Failed",
-          text: error || "",
-          icon: "error",
-          confirmButtonAriaLabel: "OK",
-        });
-      });
+    dispatch(logoutThunk()).then(() => {
+      dispatch(logout());
+      window.location.href = "/login";
+    });
   };
 
   return (
     <Navbar bg="success" variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand href="/">Code Challenges</Navbar.Brand>
+        <Navbar.Brand href="/">
+          <Trophy size={24} className="me-2" /> Code Challenges
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/challenges">Challenges</Nav.Link>
-            <Nav.Link href="/leaderboard">Leaderboard</Nav.Link>
-            <Nav.Link href="/admin">Admin</Nav.Link>
+          <Nav style={{ marginLeft: "100px" }}>
+            <Nav.Link className="me-5" href="/challenges">
+              <List size={20} className="me-2" />
+              Challenges
+            </Nav.Link>
+            <Nav.Link className="me-5" href="/leaderboard">
+              <Trophy size={20} className="me-2" />
+              Leaderboard
+            </Nav.Link>
+            <Nav.Link className="me-5" href="/admin">
+              <PersonCircle size={20} className="me-2" /> Admin
+            </Nav.Link>
           </Nav>
           <Nav>
             {(!isLoading || !isLoadingAuth) &&
@@ -73,6 +60,7 @@ function Navbare() {
               <>
                 <Nav.Link href="/profile">
                   <Button variant="outline-light">
+                    <PersonCircle size={18} className="me-2" />
                     {`Hello, ${user?.name}` || "My Account"}
                   </Button>
                 </Nav.Link>
