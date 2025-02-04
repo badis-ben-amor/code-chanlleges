@@ -84,7 +84,7 @@ const authSlice = createSlice({
       .addCase(registerThunk.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(registerThunk.fulfilled, (state) => {
+      .addCase(registerThunk.fulfilled, (state, action) => {
         state.isAuthenticated = true;
         localStorage.setItem("accessToken", action.payload.accessToken);
         localStorage.setItem("refreshToken", action.payload.refreshToken);
