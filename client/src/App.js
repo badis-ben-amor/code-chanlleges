@@ -24,7 +24,7 @@ import AdminUsers from "./pages/admin/AdminUsers";
 // import Unauthorized from "./pages/admin/Unauthorized";
 // import AdminSettings from "./pages/admin/AdminSettings";
 import ChallengeDetails from "./pages/ChallengeDetails";
-import Notifications from "./pages/Notifications";
+// import Notifications from "./pages/Notifications";
 import BadgePage from "./pages/BadgePage";
 import ActivityLogPage from "./pages/ActivityLogPage";
 
@@ -51,7 +51,7 @@ const App = () => {
         {/* user */}
         <Route path="/leaderboard" element={<Leaderboard />} />
         {/* <Route path="/unauthorized" element={<Unauthorized />} /> */}
-        <Route path="/notifications" element={<Notifications />} />
+        {/* <Route path="/notifications" element={<Notifications />} /> */}
         <Route path="/badge" element={<BadgePage />} />
         <Route path="/activity" element={<ActivityLogPage />} />
         {/* user routes         */}
