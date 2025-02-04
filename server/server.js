@@ -26,19 +26,19 @@ const adminUserRoute = require("./routes/admin/adminUserRoute");
 mongoConnection();
 const server = http.createServer(app);
 // set up socket.io instance with server
-const io = new Server(server, {
-  cors: {
-    origin: process.env.CLIENT_URL,
-    credentials: true,
-  },
-});
+// const io = new Server(server, {
+//   cors: {
+//     origin: process.env.CLIENT_URL,
+//     credentials: true,
+//   },
+// });
 // attach io instance to the request object
-app.use((req, res, next) => {
-  req.io = io;
-  next();
-});
+// app.use((req, res, next) => {
+//   req.io = io;
+//   next();
+// });
 //set up socket events
-socketEvents(io);
+// socketEvents(io);
 
 // middlewares
 app.use(express.json());
