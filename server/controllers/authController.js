@@ -49,6 +49,7 @@ const register = async (req, res) => {
     res.status(200).json({
       message: "Register successfully",
       accessToken,
+      refreshToken,
     });
   } catch (error) {
     res.status(500).json({
@@ -82,6 +83,7 @@ const login = async (req, res) => {
     return res.status(200).json({
       message: "Login successfully",
       accessToken,
+      refreshToken,
     });
   } catch (error) {
     res.status(500).jsons({
@@ -92,7 +94,8 @@ const login = async (req, res) => {
 };
 
 const refresh = async (req, res) => {
-  const { refreshToken } = req.cookies;
+  // const { refreshToken } = req.cookies;
+  const { refreshToken } = req.body;
   if (!refreshToken)
     return res.status(401).json({ message: "Refresh token missing" });
   try {

@@ -35,7 +35,8 @@ const AdminChallenges = () => {
   const { challenges: challengesData } = useSelector(
     (state) => state.adminChallenge
   );
-  const { accessToken } = useSelector((state) => state.auth);
+  // const { accessToken } = useSelector((state) => state.auth);
+  const accessToken = localStorage.getItem("accessToken");
 
   const [challenges, setChallenges] = useState([]);
   const [openDialog, setOpenDialog] = useState(false);

@@ -35,7 +35,8 @@ import {
 const AdminUsers = () => {
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.adminUser);
-  const { accessToken } = useSelector((state) => state.auth);
+  // const { accessToken } = useSelector((state) => state.auth);
+  const accessToken = localStorage.getItem("accessToken");
 
   const [allUsers, setAllUsers] = useState([]);
   const [expanded, setExpanded] = useState(null);
