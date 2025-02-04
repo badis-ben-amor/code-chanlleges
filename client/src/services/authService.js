@@ -22,7 +22,7 @@ export const refresh = async () => {
     {}
     // { withCredentials: true }
   );
-  return res.data;
+  return res;
 };
 
 export const logout = async () => {

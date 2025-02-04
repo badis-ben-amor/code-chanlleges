@@ -12,7 +12,7 @@ export const fetchAllChallengesAdminThunk = createAsyncThunk(
   async (accessToken, thunkAPI) => {
     try {
       const res = await fetchAllChallengesAdmin(accessToken);
-      return res;
+      return res.data;
     } catch (error) {
       if (error.response?.status === 403) {
         const { newAccessToken } = await refresh(accessToken);
