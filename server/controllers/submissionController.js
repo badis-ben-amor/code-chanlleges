@@ -44,9 +44,11 @@ const submitSolution = async (req, res) => {
     const user = await User.findById(userId);
     if (!challenge || !user)
       return res.status(404).json({ message: "Challenge or user not found" });
+    console.log(challenge.options);
 
     const isCorrect = challenge.options.some(
-      (option) => option.option === selectedOption && option.isCorrect
+      (option) =>
+        option._id.toString() === selectedOption._id && option.isCorrect
     );
 
     const submmission = new Submission({

@@ -11,6 +11,7 @@ const ChallengeDetails = () => {
   const { challengeId } = params;
   const dispatch = useDispatch();
   const { challenge: challengeData } = useSelector((state) => state.challenge);
+  const { accessToken } = useSelector((state) => state.auth);
   const { isCorrect, isLoading } = useSelector((state) => state.submission);
 
   const [challenge, setChallenge] = useState({});
@@ -26,7 +27,12 @@ const ChallengeDetails = () => {
   }, [challengeData]);
 
   const handleSubmit = () => {
-    dispatch(submitSolutionThunk({ challengeId, selectedOption }));
+    dispatch(
+      submitSolutionThunk({
+        challengeId,
+        selectedOption: selectedOption,
+      })
+    );
     setSubmitted(true);
   };
 
@@ -47,8 +53,8 @@ const ChallengeDetails = () => {
         {challenge.options?.map((option, i) => (
           <ListGroup.Item
             key={i}
-            onClick={() => setSelectedOption(option.option)}
-            active={selectedOption == option.option}
+            onClick={() => setSelectedOption(option)}
+            active={selectedOption?._id === option._id}
             style={{ cursor: "pointer" }}
           >
             {option.option}

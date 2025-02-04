@@ -17,7 +17,6 @@ function Navbare() {
   const { isLoading: isLoadingAuth, isSuccess: isSuccessAuth } = useSelector(
     (state) => state.auth
   );
-
   const hangAdminButton = () => {
     dispatch(loginThunk({ email: "fff@gmail.com", password: "fff" }));
     navigate("/admin");

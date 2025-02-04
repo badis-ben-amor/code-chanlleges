@@ -33,9 +33,9 @@ const App = () => {
 
   const { accessToken } = useSelector((state) => state.auth);
 
-  // useEffect(() => {
-  //   dispatch(fetchUserProfileThunk(accessToken));
-  // }, [dispatch, accessToken]);
+  useEffect(() => {
+    dispatch(fetchUserProfileThunk(accessToken));
+  }, [dispatch, accessToken]);
 
   return (
     <Router>

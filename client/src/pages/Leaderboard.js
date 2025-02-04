@@ -1,136 +1,83 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getLeaderboardThunk } from "../redux/slices/leaderboardSlice";
-import {
-  Box,
-  Grid,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography,
-  CircularProgress,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Container,
-} from "@mui/material";
 import { Bar } from "react-chartjs-2";
 import {
-  AccessTime,
-  Leaderboard as LeaderboardIcon,
-} from "@mui/icons-material";
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import ChartDataLabels from "chartjs-plugin-datalabels"; // Import datalabels plugin
+
+// Register the components
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  Title,
+  Tooltip,
+  Legend,
+  ChartDataLabels // Register the plugin
+);
 
 const Leaderboard = () => {
-  const dispatch = useDispatch();
-  const { accessToken } = useSelector((state) => state.auth);
-  const {
-    leaderboard: leaderboardData,
-    message,
-    isError,
-    isLoading,
-  } = useSelector((state) => state.leaderboard);
-  const [leaderboard, setLeaderboard] = useState([]);
+  // Static data of users with points
+  const users = [
+    { name: "User", points: 555 },
+    { name: "User 1", points: 300 },
+    { name: "User 2", points: 190 },
+    { name: "User 3", points: 100 },
+    { name: "User 4", points: 70 },
+    { name: "User 5", points: 60 },
+    { name: "User 5", points: 50 },
+    { name: "User 4", points: 40 },
+    { name: "User 5", points: 30 },
+    { name: "User 5", points: 20 },
+    { name: "User 5", points: 2 },
+  ];
 
-  useEffect(() => {
-    dispatch(getLeaderboardThunk(accessToken));
-  }, [dispatch]);
-
-  useEffect(() => {
-    setLeaderboard(leaderboardData);
-  }, [leaderboardData]);
-
+  // Prepare chart data
   const chartData = {
-    labels: leaderboard?.map((user) => user.name),
+    labels: users.map((user) => user.name),
     datasets: [
       {
         label: "Points",
-        data: leaderboard?.map((user) => user.points),
+        data: users.map((user) => user.points),
         backgroundColor: "rgba(75,192,192,0.6)",
       },
     ],
   };
 
+  // Chart options for horizontal bars
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
+    indexAxis: "y", // Makes the bars horizontal
+    scales: {
+      x: {
+        beginAtZero: true,
+      },
+    },
+    plugins: {
+      datalabels: {
+        anchor: "end", // Position the label at the end of the bar
+        align: "end", // Align the label to the right
+        color: "black", // Set the label color
+        font: {
+          weight: "bold",
+        },
+      },
+    },
   };
+
   return (
-    <Container>
-      <Grid spacing={4} sx={{ minHeight: "100vh" }}>
-        {/* Sidebar */}
-        {/* <Grid item xs={12} sm={3} component={Paper}>
-      <List>
-        <ListItem>
-          <ListItemIcon>
-            <LeaderboardIcon />
-          </ListItemIcon>
-          <ListItemText primary="Leaderboard" />
-        </ListItem>
-        <ListItem>
-          <ListItemIcon>
-            <AccessTime />
-          </ListItemIcon>
-          <ListItemText primary="Recent Activities" />
-        </ListItem>
-      </List>
-    </Grid> */}
-
-        {/* Main Content */}
-        <Grid item xs={12} sm={9}>
-          <Box sx={{ p: 3 }}>
-            <Typography variant="h4" gutterBottom>
-              Leaderboard
-            </Typography>
-
-            {isLoading ? (
-              <CircularProgress />
-            ) : isError ? (
-              <Typography color="error">
-                {message || "Failed to load leaderboard."}
-              </Typography>
-            ) : (
-              <Grid container spacing={2}>
-                {/* Leaderboard Chart */}
-                <Grid item xs={12} md={6}>
-                  <Paper sx={{ height: 400, p: 2 }}>
-                    <Bar data={chartData} options={chartOptions} />
-                  </Paper>
-                </Grid>
-
-                {/* Leaderboard Table */}
-                <Grid item xs={12} md={6}>
-                  <TableContainer component={Paper}>
-                    <Table>
-                      <TableHead>
-                        <TableRow>
-                          <TableCell>Rank</TableCell>
-                          <TableCell>Name</TableCell>
-                          <TableCell>Points</TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
-                        {leaderboard?.map((user, index) => (
-                          <TableRow key={user.id}>
-                            <TableCell>{index + 1}</TableCell>
-                            <TableCell>{user.name}</TableCell>
-                            <TableCell>{user.points}</TableCell>
-                          </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
-                </Grid>
-              </Grid>
-            )}
-          </Box>
-        </Grid>
-      </Grid>
-    </Container>
+    <div style={{ width: "100%", height: "400px" }}>
+      <h3>Leaderboard</h3>
+      <Bar data={chartData} options={chartOptions} />
+    </div>
   );
 };
 
