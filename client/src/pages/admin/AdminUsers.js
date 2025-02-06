@@ -102,7 +102,7 @@ const AdminUsers = () => {
   };
 
   return (
-    <Container className="my-2">
+    <Container className="my-1">
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Box p={3}>
