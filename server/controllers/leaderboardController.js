@@ -14,7 +14,8 @@ const getLeaderboard = async (req, res) => {
   try {
     const users = await User.find({})
       .sort({ points: -1 })
-      .select("name poinst");
+      .select("name points")
+      .limit(10);
 
     res.status(200).json({ leaderboard: users });
   } catch (error) {

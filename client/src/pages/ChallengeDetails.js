@@ -12,7 +12,7 @@ const ChallengeDetails = () => {
   const dispatch = useDispatch();
   const { challenge: challengeData } = useSelector((state) => state.challenge);
   // const { accessToken } = useSelector((state) => state.auth);
-  const accessToken=localStorage.getItem('accessToken')
+  const accessToken = localStorage.getItem("accessToken");
   const { isCorrect, isLoading } = useSelector((state) => state.submission);
 
   const [challenge, setChallenge] = useState({});
@@ -30,6 +30,7 @@ const ChallengeDetails = () => {
   const handleSubmit = () => {
     dispatch(
       submitSolutionThunk({
+        accessToken,
         challengeId,
         selectedOption: selectedOption,
       })

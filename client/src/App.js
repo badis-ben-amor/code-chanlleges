@@ -10,6 +10,7 @@ import Login from "./pages/Auth/Login";
 import Home from "./pages/Home";
 import Register from "./pages/Auth/Register";
 import ProtectRoute from "./components/protectRoutes/ProtectedRoute";
+import Dashboard from "./pages/Dashboard";
 import Challenges from "./pages/Challenges";
 import Leaderboard from "./pages/Leaderboard";
 import AdminChallenges from "./pages/admin/AdminChallenges";
@@ -24,6 +25,8 @@ import AdminUsers from "./pages/admin/AdminUsers";
 // import AdminSettings from "./pages/admin/AdminSettings";
 import ChallengeDetails from "./pages/ChallengeDetails";
 // import Notifications from "./pages/Notifications";
+import BadgePage from "./pages/BadgePage";
+import ActivityLogPage from "./pages/ActivityLogPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -48,6 +51,9 @@ const App = () => {
         {/* user */}
         <Route path="/leaderboard" element={<Leaderboard />} />
         {/* <Route path="/unauthorized" element={<Unauthorized />} /> */}
+        {/* <Route path="/notifications" element={<Notifications />} /> */}
+        <Route path="/badge" element={<BadgePage />} />
+        <Route path="/activity" element={<ActivityLogPage />} />
         {/* user routes         */}
         <Route
           path="/dashboard"

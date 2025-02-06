@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getLeaderboardThunk } from "../redux/slices/leaderboardSlice";
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,
@@ -24,20 +25,21 @@ ChartJS.register(
 );
 
 const Leaderboard = () => {
-  // Static data of users with points
-  const users = [
-    { name: "User", points: 555 },
-    { name: "User 1", points: 300 },
-    { name: "User 2", points: 190 },
-    { name: "User 3", points: 100 },
-    { name: "User 4", points: 70 },
-    { name: "User 5", points: 60 },
-    { name: "User 5", points: 50 },
-    { name: "User 4", points: 40 },
-    { name: "User 5", points: 30 },
-    { name: "User 5", points: 20 },
-    { name: "User 5", points: 2 },
-  ];
+  const dispatch = useDispatch();
+  const { leaderboard } = useSelector((state) => state.leaderboard);
+  // const {accessToken}=useSelector((state)=>state.auth)
+  const accessToken = localStorage.getItem("accessToken");
+
+  // data users with points
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    dispatch(getLeaderboardThunk(accessToken));
+  }, []);
+
+  useEffect(() => {
+    setUsers(leaderboard);
+  }, [leaderboard]);
 
   // Prepare chart data
   const chartData = {
