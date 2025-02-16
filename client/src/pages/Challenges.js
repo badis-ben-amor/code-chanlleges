@@ -23,7 +23,7 @@ const Challenges = () => {
 
   return (
     <Container className="mt-4">
-      <h1 className="mb-4">Challenges</h1>
+      {/* <h1 className="mb-4">Challenges</h1> */}
       <ListGroup>
         {challenges.map((challenge) => (
           <ListGroup.Item
