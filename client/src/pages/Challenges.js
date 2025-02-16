@@ -28,7 +28,8 @@ const Challenges = () => {
         {challenges.map((challenge) => (
           <ListGroup.Item
             key={challenge._id}
-            className="d-flex justify-content-between align-items-center bg-dark"
+            className="d-flex justify-content-between align-items-center mb-2"
+            style={{ backgroundColor: "#f5f5f5" }}
           >
             <div>
               <h5>{challenge.title}</h5>
