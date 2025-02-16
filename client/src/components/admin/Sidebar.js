@@ -24,13 +24,13 @@ const Sidebar = () => {
       }}
     >
       <List>
-        <ListItemButton component={Link} to="">
+        <ListItemButton component={Link} to="dashboard">
           <ListItemIcon>
             <Dashboard />
           </ListItemIcon>
           <ListItemText primary="Dashboard" />
         </ListItemButton>
-        <ListItemButton component={Link} to="challenges">
+        <ListItemButton component={Link} to="">
           <ListItemIcon>
             <Psychology />
           </ListItemIcon>

@@ -74,8 +74,8 @@ const App = () => {
             </AdminProtectedRoute>
           }
         >
-          <Route index element={<AdminDashboard />} />
-          <Route path="challenges" element={<AdminChallenges />} />
+          <Route index element={<AdminChallenges />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="users" element={<AdminUsers />} />
           {/* <Route path="settings" element={<AdminSettings />} /> */}
         </Route>
