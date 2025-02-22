@@ -43,6 +43,7 @@ const Challenges = () => {
                       ? "danger"
                       : "primary"
                   }
+                  className="me-2"
                   style={{ fontSize: "15px" }}
                 >
                   {challenge.difficulty}
@@ -51,7 +52,7 @@ const Challenges = () => {
                   <Badge
                     key={i}
                     bg="warning"
-                    className="ms-2"
+                    className="me-1"
                     text="dark"
                     style={{ fontSize: "15px" }}
                   >
@@ -61,8 +62,8 @@ const Challenges = () => {
               </div>
             </div>
             <Link to={challenge._id}>
-              <Button className="ms-2" variant="info">
-                Try Solve It <ArrowRightCircle />
+              <Button>
+                Try Solve It <ArrowRightCircle className="ms-1" />
               </Button>
             </Link>
           </ListGroup.Item>
