@@ -62,7 +62,7 @@ const Challenges = () => {
               </div>
             </div>
             <Link to={challenge._id}>
-              <Button>
+              <Button variant="info">
                 Try Solve It <ArrowRightCircle className="ms-1" />
               </Button>
             </Link>
