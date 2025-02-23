@@ -4,6 +4,7 @@ import { getOneChallengeThunk } from "../redux/slices/challengeSlice";
 import { submitSolutionThunk } from "../redux/slices/submissionSlice";
 import { useParams } from "react-router-dom";
 import { Button, Card, Container, ListGroup } from "react-bootstrap";
+import { HandThumbsDownFill, HandThumbsUpFill } from "react-bootstrap-icons";
 import { Fade } from "react-awesome-reveal";
 
 const ChallengeDetails = () => {
@@ -75,9 +76,13 @@ const ChallengeDetails = () => {
         <Fade>
           <div className="mt-3">
             {isCorrect ? (
-              <p style={{ color: "green" }}>Correct! 🎉</p>
+              <p className="text-success">
+                Correct! <HandThumbsUpFill size={20} />
+              </p>
             ) : (
-              <p style={{ color: "red" }}>Incorrect ❌</p>
+              <p className="text-danger">
+                Incorrect <HandThumbsDownFill size={20} />
+              </p>
             )}
           </div>
         </Fade>

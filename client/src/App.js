@@ -1,16 +1,10 @@
 import React, { useEffect } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Outlet,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Login from "./pages/Auth/Login";
 import Home from "./pages/Home";
 import Register from "./pages/Auth/Register";
-import ProtectRoute from "./components/protectRoutes/ProtectedRoute";
-import Dashboard from "./pages/Dashboard";
+// import ProtectRoute from "./components/protectRoutes/ProtectedRoute";
 import Challenges from "./pages/Challenges";
 import Leaderboard from "./pages/Leaderboard";
 import AdminChallenges from "./pages/admin/AdminChallenges";
@@ -21,12 +15,7 @@ import AdminProtectedRoute from "./components/protectRoutes/AdminProtectedRoute"
 import AdminLayout from "./components/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminUsers from "./pages/admin/AdminUsers";
-// import Unauthorized from "./pages/admin/Unauthorized";
-// import AdminSettings from "./pages/admin/AdminSettings";
 import ChallengeDetails from "./pages/ChallengeDetails";
-// import Notifications from "./pages/Notifications";
-import BadgePage from "./pages/BadgePage";
-import ActivityLogPage from "./pages/ActivityLogPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -48,23 +37,8 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/challenges" element={<Challenges />} />
         <Route path="/challenges/:challengeId" element={<ChallengeDetails />} />
-        {/* user */}
         <Route path="/leaderboard" element={<Leaderboard />} />
-        {/* <Route path="/unauthorized" element={<Unauthorized />} /> */}
-        {/* <Route path="/notifications" element={<Notifications />} /> */}
-        <Route path="/badge" element={<BadgePage />} />
-        <Route path="/activity" element={<ActivityLogPage />} />
-        {/* user routes         */}
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectRoute>
-              <Outlet />
-            </ProtectRoute>
-          }
-        >
-          <Route index element={<Dashboard />} />
-        </Route>
+        {/* user */}
         {/* admin protect rotes */}
         <Route
           path="/admin"
@@ -77,7 +51,6 @@ const App = () => {
           <Route index element={<AdminChallenges />} />
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="users" element={<AdminUsers />} />
-          {/* <Route path="settings" element={<AdminSettings />} /> */}
         </Route>
       </Routes>
       {/* <Footer /> */}
