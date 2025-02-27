@@ -98,13 +98,15 @@ const AdminUsers = () => {
   };
 
   const handleDelete = (userId) => {
-    dispatch(deleteUserAdminThunk({ userId, accessToken }));
+    dispatch(deleteUserAdminThunk({ userId, accessToken })).then(() =>
+      dispatch(getAllUserAdminThunk(accessToken))
+    );
   };
 
   return (
-    <Container className="my-1">
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
+    <Container sx={{ marginY: 1 }}>
+      <Grid>
+        <Grid>
           <Box p={3}>
             {/* <Typography variant="h4" gutterBottom>
               Admin Users
@@ -181,16 +183,15 @@ const AdminUsers = () => {
                   onChange={handleChange}
                   margin="dense"
                 />
-                {currentUser ? null : (
-                  <TextField
-                    fullWidth
-                    label="Password"
-                    name="password"
-                    value={form.password}
-                    onChange={handleChange}
-                    margin="dense"
-                  />
-                )}
+                <TextField
+                  hidden={currentUser}
+                  fullWidth
+                  label="Password"
+                  name="password"
+                  value={form.password}
+                  onChange={handleChange}
+                  margin="dense"
+                />
               </DialogContent>
               <DialogActions>
                 <Button onClick={handleCloseDialog}>Cancel</Button>

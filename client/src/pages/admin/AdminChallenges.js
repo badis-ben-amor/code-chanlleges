@@ -44,7 +44,7 @@ const AdminChallenges = () => {
 
   useEffect(() => {
     dispatch(fetchAllChallengesAdminThunk(accessToken));
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     setChallenges(challengesData);
@@ -250,7 +250,13 @@ const AdminChallenges = () => {
             Options
           </Typography>
           {currentChallenge?.options.map((option, index) => (
-            <Grid key={index} container spacing={2} alignItems="center">
+            <Grid
+              key={index}
+              container
+              spacing={2}
+              alignItems="center"
+              sx={{ marginTop: 0.5 }}
+            >
               <Grid item xs={8}>
                 <TextField
                   label={`Option ${index + 1}`}
