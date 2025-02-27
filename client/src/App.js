@@ -40,14 +40,7 @@ const App = () => {
         <Route path="/leaderboard" element={<Leaderboard />} />
         {/* user */}
         {/* admin protect rotes */}
-        <Route
-          path="/admin"
-          element={
-            <AdminProtectedRoute>
-              <AdminLayout />
-            </AdminProtectedRoute>
-          }
-        >
+        <Route path="/admin" element={<AdminProtectedRoute />}>
           <Route index element={<AdminChallenges />} />
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="users" element={<AdminUsers />} />
