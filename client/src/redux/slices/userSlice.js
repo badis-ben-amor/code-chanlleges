@@ -10,7 +10,8 @@ export const fetchUserProfileThunk = createAsyncThunk(
       return res.data;
     } catch (error) {
       if (error.response?.status === 403) {
-        const { newAccessToken } = await refresh();
+        const res = await refresh();
+        const { newAccessToken } = res.data;
         if (newAccessToken) {
           const retryRes = await getProfile(newAccessToken);
           return retryRes.data;

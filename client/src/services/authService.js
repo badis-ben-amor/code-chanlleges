@@ -24,8 +24,8 @@ export const register = async (credential) => {
 export const refresh = async () => {
   const res = await axios.post(
     `${process.env.REACT_APP_API_URL}/auth/refresh`,
-    {}
-    // { withCredentials: true }
+    {},
+    { withCredentials: true }
   );
   return res;
 };

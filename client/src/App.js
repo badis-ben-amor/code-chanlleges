@@ -20,8 +20,8 @@ import ChallengeDetails from "./pages/ChallengeDetails";
 const App = () => {
   const dispatch = useDispatch();
 
-  // const { accessToken } = useSelector((state) => state.auth);
-  const accessToken = localStorage.getItem("accessToken");
+  const { accessToken } = useSelector((state) => state.auth);
+  // const accessToken = localStorage.getItem("accessToken");
 
   useEffect(() => {
     dispatch(fetchUserProfileThunk(accessToken));
