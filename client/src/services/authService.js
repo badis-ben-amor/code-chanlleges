@@ -6,8 +6,8 @@ export const login = async ({ email, password }) => {
     {
       email,
       password,
-    }
-    // ,{withCredentials:true}
+    },
+    { withCredentials: true }
   );
   return res;
 };
