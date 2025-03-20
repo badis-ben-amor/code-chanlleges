@@ -26,7 +26,7 @@ const FeaturedChallenges = () => {
         Featured Challenges
       </h2>
       <Row>
-        {challenges.slice(0, 3).map((challenge) => (
+        {challenges?.slice(0, 3).map((challenge) => (
           <Col key={challenge._id} md={4} sm={6} className="mb-4">
             <Card className="border border-light shadow">
               <Card.Body>
